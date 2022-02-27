@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--xmlns="http://mybatis.org/schema/mybatis-mapper"-->
+<mapper namespace="com.novel.novelweb.Mapper.UserMapper">
+    <select id="findAll" resultType="User">
+        select * from user
+    </select>
+
+    <select id="findByName" resultType="User">
+        select * from user where username=#{name}
+    </select>
+
+    <select id="findPswByName" resultType="String">
+        select password from user where username = #{name}
+    </select>
+
+    <insert id="save">
+        insert into user(username,password,power) value (#{name},#{password},#{power})
+    </insert>
+
+    <insert id="collect">
+        insert into eric (name,introduction,writer,type ) value (#{name},#{introduction},#{writer},#{type})
+    </insert>
+    
+    <insert id="save_list">
+        insert into ranklist(name,reader,id) value (#{name},#{reader},#{id})
+    </insert>
+    
+    <select id="getRankList" resultType="novelcollect">
+        select * from ranklist
+    </select>
+    
+    <update id="addNumber" parameterType="novelcollect">
+        update ranklist set reader=#{reader} where name=#{name}
+    </update>
+
+    <select id="findRankByName" resultType="novelcollect">
+        select * from ranklist where name=#{name}
+    </select>
+
+    <select id="find_collect" resultType="novelShow">
+        select * from eric
+    </select>
+
+
+</mapper>

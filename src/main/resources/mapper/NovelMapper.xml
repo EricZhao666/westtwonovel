@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--xmlns="http://mybatis.org/schema/mybatis-mapper"-->
+<mapper namespace="com.novel.novelweb.Mapper.NovelMapper">
+    <select id="findAllCh" resultType="novel">
+        select name,introduction,writer,url,type from checkedfile
+    </select>
+
+    <select id="findNovel" resultType="novelShow">
+        select name,introduction,writer,type from novalfile
+    </select>
+
+    <insert id="uploadChNovel">
+        insert into checkedfile(name,introduction,writer,url,type) value (#{name},#{introduction},#{writer},#{url},#{type})
+    </insert>
+
+    <insert id="saveShow">
+        insert into novalfile(name,introduction,writer,type) value (#{name},#{introduction},#{writer},#{type})
+    </insert>
+
+    <insert id="saveDownload">
+        insert into noveldownload(name,url,id) value (#{name},#{url},#{id})
+    </insert>
+
+    <delete id="deleteChNovel" parameterType="int">
+        delete from checkedfile where id = #{id}
+    </delete>
+    <!--模糊搜索-->
+    <select id="findByName" resultType="novelShow">
+        select * from novalfile where name like #{name}
+    </select>
+
+    <select id="findUrl" resultType="noveldownload">
+        select url from noveldownload where name = #{name}
+    </select>
+
+    <select id="findChById" resultType="novel">
+        select name,introduction,writer,url,type from checkedfile where id = #{id}
+    </select>
+
+    <select id="findByNameTure" resultType="novelShow">
+        select * from novalfile where name =#{name}
+    </select>
+
+    <select id="findIdByName" resultType="int">
+        select id from novalfile where name =#{name}
+    </select>
+
+    <select id="findChIdByName" resultType="int">
+        select id from checkedfile where name =#{name}
+    </select>
+
+    <insert id="uploadImage" >
+        insert into piccheck (name,url) value (#{name},#{url})
+    </insert>
+
+    <insert id="checkImage">
+        insert into picturefile (name,url) value (#{name},#{url})
+    </insert>
+
+    <delete id="deleteImage" parameterType="String">
+        delete from piccheck where name = #{name}
+    </delete>
+
+    <select id="findAllChPic" resultType="picture">
+        select * from piccheck
+    </select>
+
+    <select id="findPicByName" resultType="picture">
+        select * from piccheck where name=#{name}
+    </select>
+
+
+
+
+
+</mapper>

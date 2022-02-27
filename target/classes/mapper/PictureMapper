@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--xmlns="http://mybatis.org/schema/mybatis-mapper"-->
+<mapper namespace="com.novel.novelweb.Mapper.pictureMapper">
+
+    <select id="findAllCh" resultType="picture">
+        select * from piccheck
+    </select>
+
+    <select id="findAll" resultType="picture">
+        select * from picturefile
+    </select>
+
+    <insert id="savePicCheck">
+        insert into piccheck(name,url) value (#{name},#{url})
+    </insert>
+
+    <insert id="savePic">
+        insert into picturefile(name,url) value (#{name},#{url})
+    </insert>
+
+    <delete id="deletePicCheck" parameterType="String">
+        delete from piccheck where name = #{name}
+    </delete>
+
+    <select id="findByName" resultType="picture">
+        select url from checkedfile where name = #{name}
+    </select>
+
+</mapper>
